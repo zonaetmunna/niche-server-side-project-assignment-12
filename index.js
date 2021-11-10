@@ -16,7 +16,7 @@ app.use(cors());
 app.use(express.json());
 
 //admin auth
-const serviceAccount = require('./the-hands-of-time-firebase-adminsdk.json');
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
 admin.initializeApp({
      credential: admin.credential.cert(serviceAccount)
 });
