@@ -69,6 +69,13 @@ async function run() {
                const result = await watchCollection.insertOne(product);
                res.json(result);
           })
+          // delete signle product
+          app.delete('/products/:id', async (req, res) => {
+               const id = req.params.id;
+               const query = { _id: ObjectId(id) };
+               const result = await watchCollection.deleteOne(query);
+               res.json(result);
+          })
 
           // order data
           // post api
@@ -96,10 +103,8 @@ async function run() {
           })
           //get api for all orders
           app.get('/orders', async (req, res) => {
-               console.log(req.body)
                const cursor = orderDataCollection.find({});
                const result = await cursor.toArray();
-               console.log(result)
                res.json(result);
           })
 
