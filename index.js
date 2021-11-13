@@ -78,7 +78,13 @@ async function run() {
           })
 
           // order data
-          // post api
+          //get api for all orders
+          app.get('/orders', async (req, res) => {
+               const cursor = orderDataCollection.find({});
+               const result = await cursor.toArray();
+               res.json(result);
+          })
+          // post api for order
           app.post('/orders', async (req, res) => {
                const order = req.body;
                const result = await orderDataCollection.insertOne(order);
@@ -101,12 +107,7 @@ async function run() {
                const result = await orderDataCollection.deleteOne(query);
                res.json(result);
           })
-          //get api for all orders
-          app.get('/orders', async (req, res) => {
-               const cursor = orderDataCollection.find({});
-               const result = await cursor.toArray();
-               res.json(result);
-          })
+
 
           // user
           // post user for save 
