@@ -4,9 +4,10 @@ This is out git hub site project (https://github.com/programming-hero-web-course
 and server site github link (https://github.com/programming-hero-web-course-4/niche-website-server-side-zonaetmunna)
 
 ## props of our site
-* we used react framework ,react-hook-form,mui react css frame work
-* we used our own server site
-* for database we used mongodb atlas database
-* this site help you for shopping unique collection
-* you share your review and comment 
+* In this project, I used client-side, server-side, and database.
+* Developed a dashboard for normal and admin users for different services. 
+* For any service, a user must login and he will be able to give reviews.
+* An admin can add, delete or update any service and make an admin.
+* Developed this project using Material-UI, react,firebase-authentication, Node.js, express.js, and MongoDB. Deploy in Heroku and firebase.
+
 
