@@ -7,10 +7,7 @@ const ObjectId = require('mongodb').ObjectId;
 const admin = require("firebase-admin");
 
 
-
-
 const port = process.env.PORT || 5000;
-
 // middleware
 app.use(cors());
 app.use(express.json());
@@ -49,13 +46,13 @@ async function run() {
           const usersCollection = database.collection('users');
           const reviewCollection = database.collection('review')
 
-          // get product
+          // get product all user
           app.get('/products', async (req, res) => {
                const cursor = watchCollection.find({});
                const result = await cursor.toArray();
                res.json(result);
           })
-          // get single product
+          // get single product all user
           app.get('/products/:id', async (req, res) => {
                const id = req.params.id;
                const query = { _id: ObjectId(id) };
@@ -78,22 +75,22 @@ async function run() {
           })
 
           // order data
-          //get api for all orders
+          //all orders for admin
           app.get('/orders', async (req, res) => {
                const cursor = orderDataCollection.find({});
                const result = await cursor.toArray();
                res.json(result);
           })
-          // post api for order
+          // post api for order user and admin
           app.post('/orders', async (req, res) => {
                const order = req.body;
                const result = await orderDataCollection.insertOne(order);
                res.json(result);
           })
-          // get orders
-          app.get('/orders', async (req, res) => {
+          // get orders specific user
+          app.get('/orders/specific', async (req, res) => {
                const email = req.query.email;
-               console.log(req.query.email);
+               // console.log(req.query.email);
                const query = { email: email };
                const cursor = orderDataCollection.find(query);
                const result = await cursor.toArray();
