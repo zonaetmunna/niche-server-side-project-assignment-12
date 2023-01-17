@@ -4,13 +4,16 @@ const app = express();
 require('dotenv').config()
 const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
+const fileUpload=require('express-fileupload');
 const admin = require("firebase-admin");
+
 
 
 const port = process.env.PORT || 5000;
 // middleware
 app.use(cors());
 app.use(express.json());
+app.use(fileUpload());
 
 //admin auth
 const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
@@ -63,6 +66,8 @@ async function run() {
           // post products
           app.post('/products', async (req, res) => {
                const product = req.body;
+               console.log(product);
+               console.log('file',req.files)
                const result = await watchCollection.insertOne(product);
                res.json(result);
           })

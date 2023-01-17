@@ -1,3 +1,4 @@
 node_modules
 .env
 watch-react-firebase-private-router-firebase-adminsdk.json
+.vercel
